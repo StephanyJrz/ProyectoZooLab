@@ -679,7 +679,7 @@ int main()
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(15.0f + movleon_x, -1.0 + movleon_y, movleon_z));
 		//model = glm::translate(model, glm::vec3(-250.0f, 15.0f, 320.0f));
-		model = glm::scale(model, glm::vec3(1.0f));
+		model = glm::scale(model, glm::vec3(3.0f));
 		staticShader.setMat4("model", model);
 		leon.Draw(staticShader);
 		//Roca dos para leon
