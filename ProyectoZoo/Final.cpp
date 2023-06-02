@@ -393,13 +393,13 @@ int main()
 	Model limona("resources/objects/limona/12232_amazon_parrot_v1_L2.obj");
 	Model ave("resources/objects/limona/ave.obj");
 	Model auto1("resources/objects/auto/auto1.obj");
-	/*
+	
 	ModelAnim cocinera("resources/objects/cocinera/BriefcaseIdle.dae");
 	cocinera.initShaders(animShader.ID);
 
 	ModelAnim cajero("resources/objects/cajero/ArmStretching.dae");
 	cajero.initShaders(animShader.ID);
-	*/
+	
 															
 	//Inicialización de KeyFrames
 	
@@ -537,13 +537,13 @@ int main()
 		model = glm::scale(model, glm::vec3(0.15f));	// it's a bit too big for our scene, so scale it down
 		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
-		//cocinera.Draw(animShader);
+		cocinera.Draw(animShader);
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(37.0f, 0.5f, -360.0f)); // translate it down so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(0.17f));	// it's a bit too big for our scene, so scale it down
 		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
-		//cajero.Draw(animShader);
+		cajero.Draw(animShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Escenario
@@ -822,14 +822,14 @@ int main()
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		//mostrador.Draw(staticShader);
+		mostrador.Draw(staticShader);
 
 		//sombrilla
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-30.0f, -2.0f, -312.0f));
 		model = glm::scale(model, glm::vec3(1.0f));
 		staticShader.setMat4("model", model);
-		//umbrella.Draw(staticShader);
+		umbrella.Draw(staticShader);
 
 		//menu
 		model = glm::mat4(1.0f);
@@ -837,7 +837,7 @@ int main()
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		//menu.Draw(staticShader);
+		menu.Draw(staticShader);
 
 
 		// -------------------------------------------------------------------------------------------------------------------------
