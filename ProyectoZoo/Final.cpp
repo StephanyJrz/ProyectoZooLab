@@ -793,28 +793,28 @@ int main()
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		//mesa.Draw(staticShader);
+		mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(5.0f, -1.5f, -270.0f));
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		//mesa.Draw(staticShader);
+		mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-57.0f, -1.5f, -300.0f));
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		//mesa.Draw(staticShader);
+		mesa.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-57.0f, -1.5f, -340.0f));
 		model = glm::scale(model, glm::vec3(0.7f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
-		//mesa.Draw(staticShader);
+		mesa.Draw(staticShader);
 
 		//mostrador 
 		model = glm::mat4(1.0f);
