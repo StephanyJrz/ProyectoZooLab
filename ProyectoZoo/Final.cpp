@@ -95,6 +95,15 @@ float	movmono_y = 2.0f;
 
 bool subeMono = true,
 	 bajaMono = false;
+// variables de animacion del ave
+float movAlto_y = 2.0f,
+	movBajo_y,
+	  movAdeX=-300.0f;
+bool vuelaAlto = true,
+	vuelaBajo=false,
+	adelante=false,
+	atras=false;
+
 
 //Keyframes (Manipulación y dibujo)
 float	movimientoX = 0.0f,
@@ -192,7 +201,7 @@ void animate(void)
 
 	if (cuelloHaciaArriba) {
 		mueveCuello -= 0.3f;
-		if (mueveCuello <= 15.0f) {
+		if (mueveCuello <= 20.0f) {
 			cuelloHaciaAbajo = true;
 			cuelloHaciaArriba = false;
 		}
@@ -251,6 +260,26 @@ void animate(void)
 			bajaMono = false;
 		}
 	}
+	//animacio ave
+	if (vuelaAlto) {
+		movAlto_y += 1.0;
+		movAdeX += 0.5f;
+		if (movAlto_y > 50.0f) {
+			vuelaAlto = false;
+			vuelaBajo = true;
+		}
+
+	}
+	if (vuelaBajo) {
+		movAlto_y -= 1.0;
+		movAdeX -= 0.5f;
+		if (movAlto_y < 0.0) {
+			vuelaBajo = false;
+			vuelaAlto = true;
+		}
+	}
+	
+
 }
 
 void getResolution()
@@ -337,17 +366,17 @@ int main()
 	// -----------
 	Model pisoZoo("resources/objects/piso/pisoZoo.obj");
 	Model paredHabitat("resources/objects/paredes/paredesHabitat.obj");
-	Model paredEntrada("resources/objects/paredes/paredEntrada.obj");
 	Model banio("resources/objects/paredes/banio.obj");
 	Model toilet("resources/objects/paredes/toilet.obj");
 	Model lavabo("resources/objects/paredes/lavaboBanio.obj");
-	//Model mesa("resources/objects/banca/mesa.obj");
-	//Model mostrador("resources/objects/tienda/mostrador.obj");
+	Model mesa("resources/objects/banca/mesa.obj");
+	Model mostrador("resources/objects/tienda/mostrador.obj");
 	Model tienda("resources/objects/tiendaRegalos/tiendaRegalos.obj");
 	Model paradaVehiculo("resources/objects/paradaVehiculo/paradaVehiculo.obj");
+
 	Model guacamaya("resources/objects/guacamaya/guacamaya.obj");
-	//Model umbrella("resources/objects/umbrella/umbrella.obj");
-	//Model menu("resources/objects/menu/menu.obj");
+	Model umbrella("resources/objects/umbrella/umbrella.obj");
+	Model menu("resources/objects/menu/menu.obj");
 	Model jeep("resources/objects/safariJeep/safariJeep.obj");
 	Model publiEntrada("resources/objects/publicidad/publiEntrada.obj");
 	Model publiParking("resources/objects/publicidad/publiParking.obj");
@@ -360,6 +389,10 @@ int main()
 	Model leon("resources/objects/leon/leone.obj");
 	Model armon("resources/objects/armon/Tree.obj");
 	Model Mono("resources/objects/mono/mono.obj");
+	Model jaula("resources/objects/jaula/jaula.obj");
+	Model limona("resources/objects/limona/12232_amazon_parrot_v1_L2.obj");
+	Model ave("resources/objects/limona/ave.obj");
+	Model auto1("resources/objects/auto/auto1.obj");
 	/*
 	ModelAnim cocinera("resources/objects/cocinera/BriefcaseIdle.dae");
 	cocinera.initShaders(animShader.ID);
@@ -374,45 +407,35 @@ int main()
 	KeyFrame[0].movimientoZ = 0.0f;
 	KeyFrame[0].orientacion = 0.0f;
 
-	KeyFrame[1].movimientoX = -100.0f;
+	KeyFrame[1].movimientoX = -400.0f;
 	KeyFrame[1].movimientoZ = 0.0f;
 	KeyFrame[1].orientacion = 0.0f;
 
-	KeyFrame[2].movimientoX = -100.0f;
-	KeyFrame[2].movimientoZ = 200.0f;
-	KeyFrame[2].orientacion = 90.0f;
+	KeyFrame[2].movimientoX = -400.0f;
+	KeyFrame[2].movimientoZ = -500.0f;
+	KeyFrame[2].orientacion = -90.0f;
 
-	KeyFrame[3].movimientoX = -270.0f;
-	KeyFrame[3].movimientoZ = 200.0f;
-	KeyFrame[3].orientacion = 0.0f;
+	KeyFrame[3].movimientoX = -90.0f;
+	KeyFrame[3].movimientoZ = -500.0f;
+	KeyFrame[3].orientacion = 180.0f;
 
-	KeyFrame[4].movimientoX = -270.0f;
-	KeyFrame[4].movimientoZ = 50.0f;
-	KeyFrame[4].orientacion = -90.0f;
+	KeyFrame[4].movimientoX = -90.0f;
+	KeyFrame[4].movimientoZ = 270.0f;
+	KeyFrame[4].orientacion = 90.0f;
 
-	KeyFrame[5].movimientoX = -100.0f;
-	KeyFrame[5].movimientoZ = 50.0f;
-	KeyFrame[5].orientacion = -180.0f;
+	KeyFrame[5].movimientoX = -400.0f;
+	KeyFrame[5].movimientoZ = 270.0f;
+	KeyFrame[5].orientacion = 0.0f;
 
-	KeyFrame[6].movimientoX = -100.0f;
-	KeyFrame[6].movimientoZ = -150.0f;
+	KeyFrame[6].movimientoX = -400.0f;
+	KeyFrame[6].movimientoZ = 0.0f;
 	KeyFrame[6].orientacion = -90.0f;
 
-	KeyFrame[7].movimientoX = -270.0f;
-	KeyFrame[7].movimientoZ = -150.0f;
+	KeyFrame[7].movimientoX = -100.0f;
+	KeyFrame[7].movimientoZ = 0.0f;
 	KeyFrame[7].orientacion = 0.0f;
 
-	KeyFrame[8].movimientoX = -270.0f;
-	KeyFrame[8].movimientoZ = -335.0f;
-	KeyFrame[8].orientacion = -90.0f;
-
-	KeyFrame[9].movimientoX = -100.0f;
-	KeyFrame[9].movimientoZ = -350.0f;
-	KeyFrame[9].orientacion = -180.0f;
-
-	KeyFrame[10].movimientoX = -100.0f;
-	KeyFrame[10].movimientoZ = 0.0f;
-	KeyFrame[10].orientacion = 90.0f;
+	
 
 	// draw in wireframe
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -543,6 +566,33 @@ int main()
 		model = glm::scale(model, glm::vec3(1.2f, 0.7f, 1.2f));
 		staticShader.setMat4("model", model);
 		paredHabitat.Draw(staticShader);
+
+		//jaula para aves
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-290.0f, -5.2f, -150.0f));
+		model = glm::scale(model, glm::vec3(1.2f, 0.7f, 1.2f));
+		staticShader.setMat4("model", model);
+		jaula.Draw(staticShader);
+		//armon
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-250.0f, 0.0f, -140.0f));
+		model = glm::scale(model, glm::vec3(15.0f));
+		staticShader.setMat4("model", model);
+		armon.Draw(staticShader);
+		//perico
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-250.5f, 10.0f, -137.0f));
+		model = glm::scale(model, glm::vec3(0.5f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		limona.Draw(staticShader);
+		//ave
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(movAdeX, movAlto_y, -127.0f));
+		model = glm::scale(model, glm::vec3(0.5f));
+		//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		ave.Draw(staticShader);
 		//Rhino
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(movrino_x, -1.0 , -235.0f));
@@ -564,8 +614,8 @@ int main()
 		armon.Draw(staticShader);
 		//arbol
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-270.0f, 5.0f, -290.0f));
-		model = glm::scale(model, glm::vec3(50.0f));
+		model = glm::translate(model, glm::vec3(-270.0f, 5.0f, -230.0f));
+		model = glm::scale(model, glm::vec3(150.0f));
 		staticShader.setMat4("model", model);
 		arbol.Draw(staticShader);
 		//--------------------------------------------------------------------------
@@ -588,16 +638,16 @@ int main()
 		staticShader.setMat4("model", model);
 		cuerpoAnim.Draw(staticShader);
 		//jirafa animada cuello
-		model = glm::translate(tempJirafa, glm::vec3(5.5f, 0.0f, 0.0f));
+		model = glm::translate(tempJirafa, glm::vec3(130.0f, 65.0f, 142.0f));
 		model = glm::rotate(model, glm::radians(mueveCuello),glm::vec3(0.0f, 0.0f, 1.0f));
-		model = glm::translate(model, glm::vec3(-2.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(15.0f, -10.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(50.0f));
 		staticShader.setMat4("model", model);
 		cuelloAnim.Draw(staticShader);
 		//arbol
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-275.0f, 4.0f,-20.0f));
-		model = glm::scale(model, glm::vec3(60.0f));
+		model = glm::scale(model, glm::vec3(70.0f));
 		staticShader.setMat4("model", model);
 		arbol.Draw(staticShader);
 		//------------------------------------------------------------------------
@@ -616,12 +666,12 @@ int main()
 		//arbol
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(-310.0f, 4.0f, 280.0f));
-		model = glm::scale(model, glm::vec3(60.0f));
+		model = glm::scale(model, glm::vec3(160.0f));
 		staticShader.setMat4("model", model);
 		arbol.Draw(staticShader);
 		//Roca uno para leon
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-250.0f, 4.0f, 320.0f));
+		model = glm::translate(model, glm::vec3(-250.0f, 4.0f,320.0f));
 		model = glm::scale(model, glm::vec3(2.0f));
 		staticShader.setMat4("model", model);
 		roca.Draw(staticShader);
@@ -685,33 +735,38 @@ int main()
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		publiEntrada.Draw(staticShader);
-	
+		//autoas
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(205.0f, 1.0f, 150.0f));
+		model = glm::scale(model, glm::vec3(12.0f));
+		staticShader.setMat4("model", model);
+		auto1.Draw(staticShader);
 
 		//Instalaciones---------------------------------------------------------------
 		//Banio
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-12.0f, -1.5f, 388.0f));
+		model = glm::translate(model, glm::vec3(-27.0f, -1.5f, 380.0f));
 		model = glm::scale(model, glm::vec3(1.6f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		banio.Draw(staticShader);
 		//Toilet
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-27.0f, -1.5f, 400.0f));
+		model = glm::translate(model, glm::vec3(-45.0f, -1.5f, 396.0f));
 		model = glm::scale(model, glm::vec3(2.7f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		toilet.Draw(staticShader);
 		//Lavabo
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-22.0f, -7.2f, 376.0f));
+		model = glm::translate(model, glm::vec3(-40.0f, -7.2f, 364.0f));
 		model = glm::scale(model, glm::vec3(18.1f));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		lavabo.Draw(staticShader);
 		//Tienda de regalos
 		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(63.0f, -1.5f, 383.0f));
+		model = glm::translate(model, glm::vec3(55.0f, -1.5f, 376.0f));
 		model = glm::scale(model, glm::vec3(1.2f));
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
